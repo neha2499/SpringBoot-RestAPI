@@ -6,10 +6,13 @@ package com.coen6731.firstAssignment;
         import com.coen6731.firstAssignment.model.Audio;
         import com.fasterxml.jackson.databind.ObjectMapper;
 
+        import org.springframework.http.HttpHeaders;
+        import org.springframework.http.MediaType;
         import org.springframework.http.ResponseEntity;
         import org.springframework.mock.web.MockHttpServletRequest;
         import org.springframework.mock.web.MockHttpServletResponse;
         import org.springframework.web.reactive.function.client.WebClient;
+        import reactor.core.publisher.Mono;
 
 
         import java.io.IOException;
@@ -37,23 +40,18 @@ public class ThreadClient implements Runnable{
     @Override
     public void run() {
 
-        WebClient webClient = WebClient.create("http://localhost:8080");
-        Audio newAudio= new Audio("eminem", "slim shady", 1, 2020, 100, 1000);
-        AudioController audioController=new AudioController();
-        ResponseEntity<Map<String, Object>> data=audioController.doPost(newAudio);
-        Map<String, Object> responseBody = data.getBody();
-        Map<String, Object> audioDB = (Map<String, Object>) responseBody.get("audioDB");
-        Audio postedElement = new ObjectMapper().convertValue(responseBody.get("postedElement"), Audio.class);
 
-        assertEquals("slim shady", postedElement.getTrack_title());
-        assertEquals(1, postedElement.getTrack_number());
-        assertEquals(2020, postedElement.getYear());
-        assertEquals(100, postedElement.getReviews_count());
-        assertEquals(1000, postedElement.getCopies_sold());
+        Audio audio = new Audio("Neha Chaudhary", "Song 1", 1, 2020, 100, 1000);
+        WebClient webClient = WebClient.create(URL);
+        String responseBody = webClient.post()
+                .uri("/")
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .body(Mono.just(audio), Audio.class)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
 
-        System.out.println("Client"+name+"Post Response: "+responseBody);
-
-
+        System.out.println(responseBody);
         for(int j=0;j<n;j++){
 
 

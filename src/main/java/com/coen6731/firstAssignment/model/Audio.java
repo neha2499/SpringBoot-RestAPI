@@ -20,14 +20,12 @@ public class Audio {
     }
 
 
-    public Audio() {
-    }
 
     public String getArtist_name() {
         return artist_name;
     }
 
-    public void setArtist_name(String johnDoe) {
+    public void setArtist_name(String artist_name) {
         this.artist_name = artist_name;
     }
 
