@@ -3,6 +3,9 @@ package com.coen6731.firstAssignment.controller;
 import com.coen6731.firstAssignment.model.Audio;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/audios")
+@Api(value = "Audio API", tags = { "Audio" })
 public class AudioController {
 
     ConcurrentHashMap<String, Audio> audioDB = new ConcurrentHashMap<>();
@@ -31,13 +35,20 @@ public class AudioController {
 
 
     @GetMapping("/{id}")
-    public Audio getAudio(@PathVariable String id) {
+    @ApiOperation(value = "Get a single audio item by id")
+    public Audio getAudio(
+            @ApiParam(value = "The Id of the audio item you want to retrieve", required = true)
+            @PathVariable String id) {
         return audioDB.get(id);
     }
 
     @GetMapping("/{artistName}/propertyName")
-
-    public ResponseEntity<Map<String, Object>> getAudioProperty(@PathVariable String artistName, @RequestParam String key) {
+    @ApiOperation(value = "Get a single property of the selected Audio item along with all audio items")
+    public ResponseEntity<Map<String, Object>> getAudioProperty(
+            @ApiParam(value = "The artist name of the Audio item to retrieve", required = true)
+            @PathVariable String artistName,
+            @ApiParam(value = "The name of the property to retrieve", required = true)
+            @RequestParam String key) {
 
 
         String value = null;
@@ -98,7 +109,10 @@ public class AudioController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Map<String, Object>> doPost(@RequestBody Audio newAudio){
+    @ApiOperation(value = "Create a new Audio item")
+    public ResponseEntity<Map<String, Object>> doPost(
+            @ApiParam(value = "The new Audio item to create", required = true)
+            @RequestBody Audio newAudio){
 
         if (newAudio== null) {
             return ResponseEntity.notFound().build();
