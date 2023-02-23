@@ -14,7 +14,7 @@
 	<name>firstAssignment</name>
 	<description>API implementation and tests client</description>
 	<properties>
-		<java.version>1.8.0</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
