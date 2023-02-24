@@ -39,7 +39,7 @@ class FirstAssignmentApplicationTests {
 	@Test
 	void testAudiopost() throws Exception {
 		Audio audio = new Audio("Neha Chaudhary", "Song 1", 1, 2020, 100, 1000);
-		WebClient webClient = WebClient.create("http://localhost:8080");
+		WebClient webClient = WebClient.create("http://155.248.226.228:8080");
 		String responseBody = webClient.post()
 				.uri("/audios/")
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

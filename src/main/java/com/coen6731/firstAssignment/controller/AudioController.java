@@ -42,6 +42,13 @@ public class AudioController {
         return audioDB.get(id);
     }
 
+
+    @GetMapping("/")
+    @ApiOperation(value = "Get all audio item")
+    public  ConcurrentHashMap<String, Audio> getAudioAll() {
+        return audioDB;
+    }
+
     @GetMapping("/{artistName}/propertyName")
     @ApiOperation(value = "Get a single property of the selected Audio item along with all audio items")
     public ResponseEntity<Map<String, Object>> getAudioProperty(
