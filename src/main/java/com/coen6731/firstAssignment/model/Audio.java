@@ -3,20 +3,26 @@ package com.coen6731.firstAssignment.model;
 public class Audio {
     private String artist_name;
     private String track_title;
+
+
     private Integer track_number;
 
     private Integer year;
     private Integer reviews_count;
     private Integer copies_sold;
 
-    public Audio(String artist_name, String track_title, int track_number, int year, int reviews_count, int copies_sold) {
+    private String album_title;
+
+    public Audio(String artist_name, String track_title, int track_number, int year, int reviews_count, int copies_sold, String album_title) {
         super();
         this.artist_name = artist_name;
         this.track_title = track_title;
         this.track_number = track_number;
         this.year = year;
+
         this.reviews_count = reviews_count;
         this.copies_sold = copies_sold;
+        this.album_title=album_title;
     }
 
 
@@ -68,6 +74,13 @@ public class Audio {
     public void setCopies_sold(Integer copies_sold) {
         this.copies_sold = copies_sold;
     }
+    public String getAlbum_title() {
+        return album_title;
+    }
+
+    public void setAlbum_title(String album_title) {
+        this.album_title= album_title;
+    }
 
 
     @Override
@@ -75,6 +88,7 @@ public class Audio {
         return "Audio{" +
                 "artist_name='" + artist_name + '\'' +
                 ", track_title='" + track_title + '\'' +
+                ", album_title='" + album_title + '\'' +
                 ", track_number=" + track_number +
                 ", year=" + year +
                 ", Reviews_count=" + reviews_count +
