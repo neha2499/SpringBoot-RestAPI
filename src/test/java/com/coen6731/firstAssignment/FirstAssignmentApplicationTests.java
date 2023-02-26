@@ -74,7 +74,7 @@ class FirstAssignmentApplicationTests extends ThreadClient  {
 
 	@Test
 	void testAudio() throws Exception{
-		String URL =  "http://155.248.226.228:8080/audios";
+		String URL =  "http://localhost:8080/audios";
 
 		HashMap<Integer, Duration> getTime=new HashMap<Integer, Duration>();//Creating HashMap
 		HashMap<Integer, Duration> postTime=new HashMap<Integer, Duration>();
