@@ -91,7 +91,7 @@ public class AudioController {
             } else if (Objects.equals(key, "reviews count")) {
                 value = String.valueOf(audioSelected.getReviews_count());
             }  else if (Objects.equals(key, "album title")) {
-                value = String.valueOf(audioSelected.getReviews_count());
+                value = String.valueOf(audioSelected.getAlbum_title());
             }else {
                 value = String.valueOf(audioSelected.getCopies_sold());
             }
