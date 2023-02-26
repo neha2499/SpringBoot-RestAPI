@@ -23,9 +23,9 @@ public class AudioController {
 
     public AudioController() {
 
-        Audio audio_1 = new Audio("Tyler Swift", "Song 1", 1, 2020, 100, 1000);
-        Audio audio_2 = new Audio("Rema", "Song 2", 2, 2021, 200, 2000);
-        Audio audio_3 = new Audio("Ed Sheeran", "Song 3", 3, 2022, 300, 3000);
+        Audio audio_1 = new Audio("Tyler Swift", "Song 1", 1, 2020, 100, 1000,"Bad blood");
+        Audio audio_2 = new Audio("Rema", "Song 2", 2, 2021, 200, 2000,"calm");
+        Audio audio_3 = new Audio("Ed Sheeran", "Song 3", 3, 2022, 300, 3000,"dancing");
 
         audioDB.put("id_1", audio_1);
         audioDB.put("id_2", audio_2);
@@ -90,7 +90,9 @@ public class AudioController {
                 value = String.valueOf(audioSelected.getYear());
             } else if (Objects.equals(key, "reviews count")) {
                 value = String.valueOf(audioSelected.getReviews_count());
-            } else {
+            }  else if (Objects.equals(key, "album title")) {
+                value = String.valueOf(audioSelected.getReviews_count());
+            }else {
                 value = String.valueOf(audioSelected.getCopies_sold());
             }
 
